@@ -15,9 +15,11 @@ Frontend :
 -NodeJS : utiliser npm install
 -Angular CLI : utiliser npm i @angular/cli@6.0.8
 -Node-sass : utiliser npm i node-sass@4.14.1
+-Localhost par defaut : http://127.0.0.1:8081
 
 Backend : lancer node server ou nodemon server après avoir installé NodeJs
 -npm install -g nodemon server
+-Localhost par defaut port 3000
 
 Les packages npm comme suit pour le backend :
 -npm install --save express 
