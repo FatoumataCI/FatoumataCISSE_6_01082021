@@ -69,7 +69,7 @@ exports.deleteSauce = (req, res, next) => {
 exports.getOneSauce = (req, res, next) => {
   // comparaison entre l'_id du paramètre url et l'id de l'objet envoyé par mongoDB
   Sauce.findOne({_id: req.params.id})
-  .then((sauce) => res.status(200).json({ sauce }))
+  .then((sauce) => res.status(200).json( sauce ))
   .catch(error => res.status(404).json({ error }));
 };
 
@@ -87,9 +87,9 @@ exports.likeSauce = (req, res, next) => {
   // maj le nombre de likes ou de dislikes
   // maj les tableaux des users qui ont liké ou disliké
   const user = req.body.userId;
-  const sauceObject = req.body.like;
+  const likeValue = req.body.like;
 
-  if (sauceObject.like === 1) {
+  if (likeValue === 1) {
     Sauce.updateOne(
       { _id: req.params.id },
       { $push: { usersLiked: user }, $inc: { likes: +1 } }
@@ -99,7 +99,7 @@ exports.likeSauce = (req, res, next) => {
         console.log(error.message);
         return res.status(500).json({ error });
       });
-  } else if (sauceObject === -1) {
+  } else if (likeValue === -1) {
     Sauce.updateOne(
       { _id: req.params.id },
       { $push: { usersDisliked: user }, $inc: { dislikes: +1 } }
@@ -109,7 +109,7 @@ exports.likeSauce = (req, res, next) => {
         console.log(error.message);
         return res.status(500).json({ error });
       });
-  } else if (sauceObject === 0) {
+  } else if (likeValue === 0) {
     Sauce.findOne({ _id: req.params.id })
       .then((sauce) => {
         if (sauce.usersLiked.includes(user)) {
@@ -146,3 +146,4 @@ exports.likeSauce = (req, res, next) => {
       .catch((error) => res.status(404).json({ error }));
   }
 };
+
