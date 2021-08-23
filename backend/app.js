@@ -7,16 +7,18 @@ const path = require('path');
 const SauceRoutes = require('./routes/Sauce');
 const userRoutes = require('./routes/user');
 
+
+//creation de l'app
+const app = express();
+
+
 //connexion de l'API à mongoDB que j'ai cree
 mongoose.connect('mongodb+srv://Fatoumata:maman94@cluster0.ehbhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
-//creation de l'app
-const app = express();
-
+  
 //middleware general 1 pour definir les headers de toutes les requetes
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
