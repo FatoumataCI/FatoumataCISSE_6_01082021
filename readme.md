@@ -29,4 +29,5 @@ Les packages npm comme suit pour le backend :
 -npm install --save bcrypt 
 -npm install --save jsonwebtoken 
 -npm install --save multer 
-
+-npm install --save helmet
+-npm install --save cors
