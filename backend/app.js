@@ -3,6 +3,8 @@ const express = require ('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
+
 
 const SauceRoutes = require('./routes/Sauce');
 const userRoutes = require('./routes/user');
@@ -11,6 +13,13 @@ const userRoutes = require('./routes/user');
 //creation de l'app
 const app = express();
 
+const helmet = require('helmet');
+//helmet
+app.use(helmet());
+
+
+
+
 
 //connexion de l'API à mongoDB que j'ai cree
 mongoose.connect('mongodb+srv://Fatoumata:maman94@cluster0.ehbhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -18,6 +27,8 @@ mongoose.connect('mongodb+srv://Fatoumata:maman94@cluster0.ehbhl.mongodb.net/myF
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+
   
 //middleware general 1 pour definir les headers de toutes les requetes
 app.use((req, res, next) => {
